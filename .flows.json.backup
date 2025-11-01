@@ -1,0 +1,1725 @@
+[
+    {
+        "id": "840bfcea84e92392",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a1b2c3d4.e5f6a7",
+        "type": "tab",
+        "label": "Weather to APRS",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "44e1f0b1f6876a70",
+        "type": "tab",
+        "label": "Weather to APRS",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "25835a6e6cfb420d",
+        "type": "tab",
+        "label": "Weather to APRS",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "8338d0bbea2f1c3f",
+        "type": "tab",
+        "label": "Weather to APRS",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "8e09f0b89b883934",
+        "type": "tab",
+        "label": "Weather to APRS",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "54dc019d10720398",
+        "type": "tab",
+        "label": "Weather to APRS",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c3d4e5f6.a7b8c9",
+        "type": "mqtt-broker",
+        "name": "MQTT Broker",
+        "broker": "192.168.50.63",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "8d36bb808efc68b7",
+        "type": "ui_tab",
+        "name": "Clubhouse",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ae32a029e147cc77",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "586dbd5c872579f0",
+        "type": "ui_group",
+        "name": "Weather",
+        "tab": "8d36bb808efc68b7",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9c0d61ed398f4973",
+        "type": "function",
+        "z": "840bfcea84e92392",
+        "name": "function 1",
+        "func": "function pad(num, size) {\n        let s = String(num);\n            while (s.length < size) s = \"0\" + s;\n                return s;\n}\nlet gust = pad((Math.round(msg.payload.windgust)), 3);\nlet temp = pad((Math.round(msg.payload.temp)), 3);\nlet humidity = pad((Math.round(msg.payload.humidity)), 2);\n\nlet formattedstring = `.../...g${gust}t${temp}r...p...P...h${humidity}b.....`;\n\nmsg.payload = formattedstring;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 340,
+        "wires": [
+            [
+                "f8bc03e5b48deca4"
+            ]
+        ]
+    },
+    {
+        "id": "f8bc03e5b48deca4",
+        "type": "file",
+        "z": "840bfcea84e92392",
+        "name": "",
+        "filename": "/home/gcarc/weatherdata/wx.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "utf8",
+        "x": 1010,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "64f5a89098ae1ded",
+        "type": "inject",
+        "z": "840bfcea84e92392",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"windgust\":50,\"temp\":111.4,\"humidity\":7.6}",
+        "payloadType": "json",
+        "x": 530,
+        "y": 340,
+        "wires": [
+            [
+                "9c0d61ed398f4973"
+            ]
+        ]
+    },
+    {
+        "id": "b2c3d4e5.f6a7b8",
+        "type": "mqtt in",
+        "z": "a1b2c3d4.e5f6a7",
+        "name": "Temperature",
+        "topic": "weather/devices/Acurite-5n1/A/3529/temperature_F",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 120,
+        "y": 100,
+        "wires": [
+            [
+                "d4e5f6a7.b8c9d0"
+            ]
+        ]
+    },
+    {
+        "id": "e5f6a7b8.c9d0e1",
+        "type": "mqtt in",
+        "z": "a1b2c3d4.e5f6a7",
+        "name": "Humidity",
+        "topic": "weather/devices/Acurite-5n1/A/3529/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "f6a7b8c9.d0e1f2"
+            ]
+        ]
+    },
+    {
+        "id": "a7b8c9d0.e1f2a3",
+        "type": "mqtt in",
+        "z": "a1b2c3d4.e5f6a7",
+        "name": "Wind Speed",
+        "topic": "weather/devices/Acurite-5n1/A/3529/wind_avg_km_h",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "b8c9d0e1.f2a3b4"
+            ]
+        ]
+    },
+    {
+        "id": "d4e5f6a7.b8c9d0",
+        "type": "change",
+        "z": "a1b2c3d4.e5f6a7",
+        "name": "Store Temperature",
+        "rules": [
+            {
+                "t": "set",
+                "p": "temperature",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 100,
+        "wires": [
+            [
+                "c9d0e1f2.a3b4c5"
+            ]
+        ]
+    },
+    {
+        "id": "f6a7b8c9.d0e1f2",
+        "type": "change",
+        "z": "a1b2c3d4.e5f6a7",
+        "name": "Store Humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "humidity",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 160,
+        "wires": [
+            [
+                "c9d0e1f2.a3b4c5"
+            ]
+        ]
+    },
+    {
+        "id": "b8c9d0e1.f2a3b4",
+        "type": "change",
+        "z": "a1b2c3d4.e5f6a7",
+        "name": "Store Wind Speed",
+        "rules": [
+            {
+                "t": "set",
+                "p": "wind_speed",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 220,
+        "wires": [
+            [
+                "c9d0e1f2.a3b4c5"
+            ]
+        ]
+    },
+    {
+        "id": "c9d0e1f2.a3b4c5",
+        "type": "function",
+        "z": "a1b2c3d4.e5f6a7",
+        "name": "Format APRS Packet",
+        "func": "let temp = flow.get('temperature');\nlet hum = flow.get('humidity');\nlet wind = flow.get('wind_speed');\n\n// Check if all values are available\nif (temp === undefined || hum === undefined || wind === undefined) {\n    return null; // Skip if any value is missing\n}\n\n// Convert wind speed from km/h to mph (1 km/h = 0.621371 mph)\nlet wind_mph = Math.round(wind * 0.621371);\n\n// Format temperature (e.g., 70.9 -> t071, pad to 3 digits)\nlet temp_str = Math.round(temp).toString().padStart(3, '0');\nif (temp < 0) temp_str = '-' + Math.abs(temp).toString().padStart(2, '0');\n\n// Format humidity (e.g., 80 -> h80, pad to 2 digits)\nlet hum_str = Math.round(hum).toString().padStart(2, '0');\n\n// Format wind speed (e.g., 5 mph -> g005, pad to 3 digits)\nlet wind_str = wind_mph.toString().padStart(3, '0');\n\n// Get current UTC time for APRS timestamp (DDHHMMz)\nlet now = new Date();\nlet day = now.getUTCDate().toString().padStart(2, '0');\nlet hours = now.getUTCHours().toString().padStart(2, '0');\nlet minutes = now.getUTCMinutes().toString().padStart(2, '0');\nlet timestamp = `${day}${hours}${minutes}z`;\n\n// APRS position and weather format\n// Example: W2MMD-7>APRS,TCPIP*:@DDHHMMz3943.02N/07512.59W_.../...g005t071r...p...P...h80b.....\nlet aprs_packet = `W2MMD-7>APRS,TCPIP*:@${timestamp}3943.02N/07512.59W_.../...g${wind_str}t${temp_str}r...p...P...h${hum_str}b.....`;\n\nmsg.payload = aprs_packet;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 160,
+        "wires": [
+            [
+                "d0e1f2a3.b4c5d6",
+                "a9f109b9666fc0a8"
+            ]
+        ]
+    },
+    {
+        "id": "d0e1f2a3.b4c5d6",
+        "type": "file",
+        "z": "a1b2c3d4.e5f6a7",
+        "name": "Write to weather.txt",
+        "filename": "C:\\Direwolf\\weather.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": true,
+        "encoding": "utf8",
+        "x": 770,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a9f109b9666fc0a8",
+        "type": "debug",
+        "z": "a1b2c3d4.e5f6a7",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "b9794908bae0c570",
+        "type": "mqtt in",
+        "z": "44e1f0b1f6876a70",
+        "name": "Temperature",
+        "topic": "weather/devices/Acurite-5n1/A/3529/temperature_F",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 120,
+        "y": 100,
+        "wires": [
+            [
+                "ee39c3938579147f"
+            ]
+        ]
+    },
+    {
+        "id": "c6aad11fdb125883",
+        "type": "mqtt in",
+        "z": "44e1f0b1f6876a70",
+        "name": "Humidity",
+        "topic": "weather/devices/Acurite-5n1/A/3529/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "0169f4236264c5d7"
+            ]
+        ]
+    },
+    {
+        "id": "1e56b7192ae03c3d",
+        "type": "mqtt in",
+        "z": "44e1f0b1f6876a70",
+        "name": "Wind Speed",
+        "topic": "weather/devices/Acurite-5n1/A/3529/wind_avg_km_h",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "5fd043252d77c19a"
+            ]
+        ]
+    },
+    {
+        "id": "ee39c3938579147f",
+        "type": "change",
+        "z": "44e1f0b1f6876a70",
+        "name": "Store Temperature",
+        "rules": [
+            {
+                "t": "set",
+                "p": "temperature",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 100,
+        "wires": [
+            [
+                "d785aa013078f740"
+            ]
+        ]
+    },
+    {
+        "id": "0169f4236264c5d7",
+        "type": "change",
+        "z": "44e1f0b1f6876a70",
+        "name": "Store Humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "humidity",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 160,
+        "wires": [
+            [
+                "d785aa013078f740"
+            ]
+        ]
+    },
+    {
+        "id": "5fd043252d77c19a",
+        "type": "change",
+        "z": "44e1f0b1f6876a70",
+        "name": "Store Wind Speed",
+        "rules": [
+            {
+                "t": "set",
+                "p": "wind_speed",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 220,
+        "wires": [
+            [
+                "d785aa013078f740"
+            ]
+        ]
+    },
+    {
+        "id": "d785aa013078f740",
+        "type": "function",
+        "z": "44e1f0b1f6876a70",
+        "name": "Format APRS Packet",
+        "func": "let temp = flow.get('temperature');\nlet hum = flow.get('humidity');\nlet wind = flow.get('wind_speed');\n\n// Check if all values are available\nif (temp === undefined || hum === undefined || wind === undefined) {\n    return null; // Skip if any value is missing\n}\n\n// Convert wind speed from km/h to mph (1 km/h = 0.621371 mph)\nlet wind_mph = Math.round(wind * 0.621371);\n\n// Format temperature (e.g., 70.9 -> t071, pad to 3 digits)\nlet temp_str = Math.round(temp).toString().padStart(3, '0');\nif (temp < 0) temp_str = '-' + Math.abs(temp).toString().padStart(2, '0');\n\n// Format humidity (e.g., 80 -> h80, pad to 2 digits)\nlet hum_str = Math.round(hum).toString().padStart(2, '0');\n\n// Format wind speed (e.g., 5 mph -> g005, pad to 3 digits)\nlet wind_str = wind_mph.toString().padStart(3, '0');\n\n// Get current UTC time for APRS timestamp (DDHHMMz)\nlet now = new Date();\nlet day = now.getUTCDate().toString().padStart(2, '0');\nlet hours = now.getUTCHours().toString().padStart(2, '0');\nlet minutes = now.getUTCMinutes().toString().padStart(2, '0');\nlet timestamp = `${day}${hours}${minutes}z`;\n\n// APRS packet body for CBEACON infofile\n// Example: @DDHHMMz3943.02N/07512.59W_.../...g005t071r...p...P...h80b.....\nlet aprs_packet = `@${timestamp}3943.02N/07512.59W_.../...g${wind_str}t${temp_str}r...p...P...h${hum_str}b.....`;\n\nmsg.payload = aprs_packet;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 160,
+        "wires": [
+            [
+                "30477b68e3a23c05",
+                "04a2be89a9e5eba7"
+            ]
+        ]
+    },
+    {
+        "id": "30477b68e3a23c05",
+        "type": "file",
+        "z": "44e1f0b1f6876a70",
+        "name": "Write to weather.txt",
+        "filename": "C:\\Direwolf\\weather.txt",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": true,
+        "encoding": "utf8",
+        "x": 720,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "04a2be89a9e5eba7",
+        "type": "debug",
+        "z": "44e1f0b1f6876a70",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "4f563e82c6761c8d",
+        "type": "mqtt in",
+        "z": "25835a6e6cfb420d",
+        "name": "Temperature",
+        "topic": "weather/devices/Acurite-5n1/A/3529/temperature_F",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 120,
+        "y": 100,
+        "wires": [
+            [
+                "4151bedc5d6f5326"
+            ]
+        ]
+    },
+    {
+        "id": "f833329d8a175a29",
+        "type": "mqtt in",
+        "z": "25835a6e6cfb420d",
+        "name": "Humidity",
+        "topic": "weather/devices/Acurite-5n1/A/3529/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "02837d416d95b31d"
+            ]
+        ]
+    },
+    {
+        "id": "44dd6338027f69de",
+        "type": "mqtt in",
+        "z": "25835a6e6cfb420d",
+        "name": "Wind Speed",
+        "topic": "weather/devices/Acurite-5n1/A/3529/wind_avg_km_h",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "e1d4372480e136ce"
+            ]
+        ]
+    },
+    {
+        "id": "4151bedc5d6f5326",
+        "type": "change",
+        "z": "25835a6e6cfb420d",
+        "name": "Store Temperature",
+        "rules": [
+            {
+                "t": "set",
+                "p": "temperature",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 100,
+        "wires": [
+            [
+                "a11752ab1e7c4737"
+            ]
+        ]
+    },
+    {
+        "id": "02837d416d95b31d",
+        "type": "change",
+        "z": "25835a6e6cfb420d",
+        "name": "Store Humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "humidity",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 160,
+        "wires": [
+            [
+                "a11752ab1e7c4737"
+            ]
+        ]
+    },
+    {
+        "id": "e1d4372480e136ce",
+        "type": "change",
+        "z": "25835a6e6cfb420d",
+        "name": "Store Wind Speed",
+        "rules": [
+            {
+                "t": "set",
+                "p": "wind_speed",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 220,
+        "wires": [
+            [
+                "a11752ab1e7c4737"
+            ]
+        ]
+    },
+    {
+        "id": "a11752ab1e7c4737",
+        "type": "function",
+        "z": "25835a6e6cfb420d",
+        "name": "Format APRS Weather Data",
+        "func": "let temp = flow.get('temperature');\nlet hum = flow.get('humidity');\nlet wind = flow.get('wind_speed');\n\n// Check if all values are available\nif (temp === undefined || hum === undefined || wind === undefined) {\n    return null; // Skip if any value is missing\n}\n\n// Convert wind speed from km/h to mph (1 km/h = 0.621371 mph)\nlet wind_mph = Math.round(wind * 0.621371);\n\n// Format temperature (e.g., 70.9 -> t071, pad to 3 digits)\nlet temp_str = Math.round(temp).toString().padStart(3, '0');\nif (temp < 0) temp_str = '-' + Math.abs(temp).toString().padStart(2, '0');\n\n// Format humidity (e.g., 80 -> h80, pad to 2 digits)\nlet hum_str = Math.round(hum).toString().padStart(2, '0');\n\n// Format wind speed (e.g., 5 mph -> g005, pad to 3 digits)\nlet wind_str = wind_mph.toString().padStart(3, '0');\n\n// APRS weather data for CBEACON infofile\n// Example: _.../...g005t071r...p...P...h80b.....\nlet aprs_weather = `_.../...g${wind_str}t${temp_str}r...p...P...h${hum_str}b.....`;\n\nmsg.payload = aprs_weather;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 560,
+        "y": 160,
+        "wires": [
+            [
+                "8921f0f1407f6c20",
+                "6bc69e870ffe960f"
+            ]
+        ]
+    },
+    {
+        "id": "8921f0f1407f6c20",
+        "type": "file",
+        "z": "25835a6e6cfb420d",
+        "name": "Write to weather.txt",
+        "filename": "C:\\Direwolf\\weather.txt",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": true,
+        "encoding": "utf8",
+        "x": 810,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6bc69e870ffe960f",
+        "type": "debug",
+        "z": "25835a6e6cfb420d",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "96c5ff57e568cbf6",
+        "type": "mqtt in",
+        "z": "8338d0bbea2f1c3f",
+        "name": "Temperature",
+        "topic": "weather/devices/Acurite-5n1/A/3529/temperature_F",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 120,
+        "y": 100,
+        "wires": [
+            [
+                "892fdef1c7cd34df"
+            ]
+        ]
+    },
+    {
+        "id": "f5175e86255e55b5",
+        "type": "mqtt in",
+        "z": "8338d0bbea2f1c3f",
+        "name": "Humidity",
+        "topic": "weather/devices/Acurite-5n1/A/3529/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "e3e0d838f735592e"
+            ]
+        ]
+    },
+    {
+        "id": "db49d318bb939c91",
+        "type": "mqtt in",
+        "z": "8338d0bbea2f1c3f",
+        "name": "Wind Speed",
+        "topic": "weather/devices/Acurite-5n1/A/3529/wind_avg_km_h",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "60ae4fb7f72a3d8a"
+            ]
+        ]
+    },
+    {
+        "id": "892fdef1c7cd34df",
+        "type": "change",
+        "z": "8338d0bbea2f1c3f",
+        "name": "Store Temperature",
+        "rules": [
+            {
+                "t": "set",
+                "p": "temperature",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 100,
+        "wires": [
+            [
+                "824d7d1032631be5"
+            ]
+        ]
+    },
+    {
+        "id": "e3e0d838f735592e",
+        "type": "change",
+        "z": "8338d0bbea2f1c3f",
+        "name": "Store Humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "humidity",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 160,
+        "wires": [
+            [
+                "824d7d1032631be5"
+            ]
+        ]
+    },
+    {
+        "id": "60ae4fb7f72a3d8a",
+        "type": "change",
+        "z": "8338d0bbea2f1c3f",
+        "name": "Store Wind Speed",
+        "rules": [
+            {
+                "t": "set",
+                "p": "wind_speed",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 220,
+        "wires": [
+            [
+                "824d7d1032631be5"
+            ]
+        ]
+    },
+    {
+        "id": "824d7d1032631be5",
+        "type": "function",
+        "z": "8338d0bbea2f1c3f",
+        "name": "Format APRS Weather Data",
+        "func": "let temp = flow.get('temperature');\nlet hum = flow.get('humidity');\nlet wind = flow.get('wind_speed');\n\n// Check if all values are available\nif (temp === undefined || hum === undefined || wind === undefined) {\n    return null; // Skip if any value is missing\n}\n\n// Convert wind speed from km/h to mph (1 km/h = 0.621371 mph)\nlet wind_mph = Math.round(wind * 0.621371);\n\n// Format temperature (e.g., 70.9 -> t071, pad to 3 digits)\nlet temp_str = Math.round(temp).toString().padStart(3, '0');\nif (temp < 0) temp_str = '-' + Math.abs(temp).toString().padStart(2, '0');\n\n// Format humidity (e.g., 80 -> h80, pad to 2 digits)\nlet hum_str = Math.round(hum).toString().padStart(2, '0');\n\n// Format wind speed (e.g., 5 mph -> 005, pad to 3 digits)\nlet wind_str = wind_mph.toString().padStart(3, '0');\n\n// APRS weather data for CBEACON infofile\n// Example: .../005g005t071r...p...P...h80b.....\nlet aprs_weather = `.../${wind_str}g${wind_str}t${temp_str}r...p...P...h${hum_str}b.....`;\n\nmsg.payload = aprs_weather;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 160,
+        "wires": [
+            [
+                "9bd38879d5bded1b",
+                "5b6dadf4c3a635b8"
+            ]
+        ]
+    },
+    {
+        "id": "9bd38879d5bded1b",
+        "type": "file",
+        "z": "8338d0bbea2f1c3f",
+        "name": "Write to weather.txt",
+        "filename": "C:\\Direwolf\\weather.txt",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": true,
+        "encoding": "utf8",
+        "x": 790,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5b6dadf4c3a635b8",
+        "type": "debug",
+        "z": "8338d0bbea2f1c3f",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b6e7a29d8003fcf9",
+        "type": "mqtt in",
+        "z": "8e09f0b89b883934",
+        "name": "Temperature",
+        "topic": "weather/devices/Acurite-5n1/A/3529/temperature_F",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 120,
+        "y": 80,
+        "wires": [
+            [
+                "6a07f35e6b728546"
+            ]
+        ]
+    },
+    {
+        "id": "d5880fcd8eb41c8e",
+        "type": "mqtt in",
+        "z": "8e09f0b89b883934",
+        "name": "Humidity",
+        "topic": "weather/devices/Acurite-5n1/A/3529/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 120,
+        "y": 140,
+        "wires": [
+            [
+                "e4f60908f2604a55"
+            ]
+        ]
+    },
+    {
+        "id": "b7097b892739d412",
+        "type": "mqtt in",
+        "z": "8e09f0b89b883934",
+        "name": "Wind Speed",
+        "topic": "weather/devices/Acurite-5n1/A/3529/wind_avg_km_h",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "b0d7c31f7b753d8e"
+            ]
+        ]
+    },
+    {
+        "id": "1411b5352f71f613",
+        "type": "mqtt in",
+        "z": "8e09f0b89b883934",
+        "name": "Wind Direction",
+        "topic": "weather/devices/Acurite-5n1/A/3529/wind_dir_deg",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 120,
+        "y": 260,
+        "wires": [
+            [
+                "9e6601d377c06e37"
+            ]
+        ]
+    },
+    {
+        "id": "6a07f35e6b728546",
+        "type": "change",
+        "z": "8e09f0b89b883934",
+        "name": "Store Temperature",
+        "rules": [
+            {
+                "t": "set",
+                "p": "temperature",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 80,
+        "wires": [
+            [
+                "b6a176efe60f9de0"
+            ]
+        ]
+    },
+    {
+        "id": "e4f60908f2604a55",
+        "type": "change",
+        "z": "8e09f0b89b883934",
+        "name": "Store Humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "humidity",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 140,
+        "wires": [
+            [
+                "b6a176efe60f9de0"
+            ]
+        ]
+    },
+    {
+        "id": "b0d7c31f7b753d8e",
+        "type": "change",
+        "z": "8e09f0b89b883934",
+        "name": "Store Wind Speed",
+        "rules": [
+            {
+                "t": "set",
+                "p": "wind_speed",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 200,
+        "wires": [
+            [
+                "b6a176efe60f9de0"
+            ]
+        ]
+    },
+    {
+        "id": "9e6601d377c06e37",
+        "type": "change",
+        "z": "8e09f0b89b883934",
+        "name": "Store Wind Direction",
+        "rules": [
+            {
+                "t": "set",
+                "p": "wind_direction",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "b6a176efe60f9de0"
+            ]
+        ]
+    },
+    {
+        "id": "b6a176efe60f9de0",
+        "type": "function",
+        "z": "8e09f0b89b883934",
+        "name": "Format APRS Weather Data",
+        "func": "let temp = flow.get('temperature');\nlet hum = flow.get('humidity');\nlet wind = flow.get('wind_speed');\nlet wind_dir = flow.get('wind_direction');\n\n// Check if all values are available\nif (temp === undefined || hum === undefined || wind === undefined || wind_dir === undefined) {\n    return null; // Skip if any value is missing\n}\n\n// Convert wind speed from km/h to mph (1 km/h = 0.621371 mph)\nlet wind_mph = Math.round(wind * 0.621371);\n\n// Format temperature (e.g., 70.9 -> t071, pad to 3 digits)\nlet temp_str = Math.round(temp).toString().padStart(3, '0');\nif (temp < 0) temp_str = '-' + Math.abs(temp).toString().padStart(2, '0');\n\n// Format humidity (e.g., 80 -> h80, pad to 2 digits)\nlet hum_str = Math.round(hum).toString().padStart(2, '0');\n\n// Format wind speed (e.g., 5 mph -> 005, pad to 3 digits)\nlet wind_str = wind_mph.toString().padStart(3, '0');\n\n// Format wind direction (e.g., 180 -> 180, pad to 3 digits)\nlet wind_dir_str = Math.round(wind_dir).toString().padStart(3, '0');\n\n// APRS weather data for CBEACON infofile\n// Example: 180/005g005t071r...p...P...h80b.....\nlet aprs_weather = `${wind_dir_str}/${wind_str}g${wind_str}t${temp_str}r...p...P...h${hum_str}b.....`;\n\nmsg.payload = aprs_weather;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 600,
+        "y": 160,
+        "wires": [
+            [
+                "2440f8a2fc5418b6",
+                "442c0a637e11ef06"
+            ]
+        ]
+    },
+    {
+        "id": "2440f8a2fc5418b6",
+        "type": "file",
+        "z": "8e09f0b89b883934",
+        "name": "Write to weather.txt",
+        "filename": "C:\\Direwolf\\weather.txt",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": true,
+        "encoding": "utf8",
+        "x": 850,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "442c0a637e11ef06",
+        "type": "debug",
+        "z": "8e09f0b89b883934",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "2cd119f43a84f1d6",
+        "type": "mqtt in",
+        "z": "54dc019d10720398",
+        "name": "Temperature",
+        "topic": "weather/devices/Acurite-5n1/A/3529/temperature_F",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 110,
+        "y": 60,
+        "wires": [
+            [
+                "c1517d99b32b07ca"
+            ]
+        ]
+    },
+    {
+        "id": "1e7a5789121effdf",
+        "type": "mqtt in",
+        "z": "54dc019d10720398",
+        "name": "Humidity",
+        "topic": "weather/devices/Acurite-5n1/A/3529/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 100,
+        "y": 120,
+        "wires": [
+            [
+                "3169c7829adc2f3e"
+            ]
+        ]
+    },
+    {
+        "id": "f47aa2f14a0c276a",
+        "type": "mqtt in",
+        "z": "54dc019d10720398",
+        "name": "Wind Speed",
+        "topic": "weather/devices/Acurite-5n1/A/3529/wind_avg_km_h",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 110,
+        "y": 200,
+        "wires": [
+            [
+                "4c7af61c4f0f62b9"
+            ]
+        ]
+    },
+    {
+        "id": "a6d142fc9fa49e59",
+        "type": "mqtt in",
+        "z": "54dc019d10720398",
+        "name": "Wind Direction",
+        "topic": "weather/devices/Acurite-5n1/A/3529/wind_dir_deg",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 120,
+        "y": 260,
+        "wires": [
+            [
+                "aea5075d2511e812"
+            ]
+        ]
+    },
+    {
+        "id": "7f9a828c44636902",
+        "type": "mqtt in",
+        "z": "54dc019d10720398",
+        "name": "Rain Total",
+        "topic": "weather/devices/Acurite-5n1/A/3529/rain_mm",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "c3d4e5f6.a7b8c9",
+        "inputs": 0,
+        "x": 100,
+        "y": 360,
+        "wires": [
+            [
+                "fa68a4ad8694a24e"
+            ]
+        ]
+    },
+    {
+        "id": "c1517d99b32b07ca",
+        "type": "change",
+        "z": "54dc019d10720398",
+        "name": "Store Temperature",
+        "rules": [
+            {
+                "t": "set",
+                "p": "temperature",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 60,
+        "wires": [
+            [
+                "21286d39d9616d9b",
+                "1b066dc42eee8e45"
+            ]
+        ]
+    },
+    {
+        "id": "3169c7829adc2f3e",
+        "type": "change",
+        "z": "54dc019d10720398",
+        "name": "Store Humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "humidity",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 120,
+        "wires": [
+            [
+                "21286d39d9616d9b",
+                "7d4456f4674a0c45"
+            ]
+        ]
+    },
+    {
+        "id": "4c7af61c4f0f62b9",
+        "type": "change",
+        "z": "54dc019d10720398",
+        "name": "Store Wind Speed",
+        "rules": [
+            {
+                "t": "set",
+                "p": "wind_speed",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 200,
+        "wires": [
+            [
+                "21286d39d9616d9b",
+                "6e2be083e38abc2f"
+            ]
+        ]
+    },
+    {
+        "id": "aea5075d2511e812",
+        "type": "change",
+        "z": "54dc019d10720398",
+        "name": "Store Wind Direction",
+        "rules": [
+            {
+                "t": "set",
+                "p": "wind_direction",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "21286d39d9616d9b",
+                "cb36081efe74d7e8"
+            ]
+        ]
+    },
+    {
+        "id": "fa68a4ad8694a24e",
+        "type": "change",
+        "z": "54dc019d10720398",
+        "name": "Store Rain Total",
+        "rules": [
+            {
+                "t": "set",
+                "p": "rain_total",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 360,
+        "wires": [
+            [
+                "93e6262d56e48432"
+            ]
+        ]
+    },
+    {
+        "id": "93e6262d56e48432",
+        "type": "function",
+        "z": "54dc019d10720398",
+        "name": "Calculate Rain Delta",
+        "func": "let previous = flow.get('previous_rain_total') || 0;\nlet delta_mm = msg.payload - previous;\nif (delta_mm < 0) delta_mm = 0;\nlet hourly_rain_mm = (flow.get('hourly_rain_mm') || 0) + delta_mm;\nflow.set('hourly_rain_mm', hourly_rain_mm);\nflow.set('previous_rain_total', msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 360,
+        "wires": [
+            [
+                "21286d39d9616d9b",
+                "6592f4aba7b78648"
+            ]
+        ]
+    },
+    {
+        "id": "1a1a432180699cb6",
+        "type": "inject",
+        "z": "54dc019d10720398",
+        "name": "Hourly Rain Reset",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "0 * * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "str",
+        "x": 130,
+        "y": 440,
+        "wires": [
+            [
+                "93dbb11880690711"
+            ]
+        ]
+    },
+    {
+        "id": "93dbb11880690711",
+        "type": "change",
+        "z": "54dc019d10720398",
+        "name": "Reset Hourly Rain",
+        "rules": [
+            {
+                "t": "set",
+                "p": "hourly_rain_mm",
+                "pt": "flow",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 350,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "21286d39d9616d9b",
+        "type": "function",
+        "z": "54dc019d10720398",
+        "name": "Format APRS Weather Data",
+        "func": "let temp = flow.get('temperature');\nlet hum = flow.get('humidity');\nlet wind = flow.get('wind_speed');\nlet wind_dir = flow.get('wind_direction');\nlet hourly_rain_mm = flow.get('hourly_rain_mm') || 0;\n\n// Check if all values are available\nif (temp === undefined || hum === undefined || wind === undefined || wind_dir === undefined) {\n    return null; // Skip if any value is missing\n}\n\n// Convert wind speed from km/h to mph (1 km/h = 0.621371 mph)\nlet wind_mph = Math.round(wind * 0.621371);\n\n// Format temperature (e.g., 70.9 -> t071, pad to 3 digits)\nlet temp_str = Math.round(temp).toString().padStart(3, '0');\nif (temp < 0) temp_str = '-' + Math.abs(temp).toString().padStart(2, '0');\n\n// Format humidity (e.g., 80 -> h80, pad to 2 digits)\nlet hum_str = Math.round(hum).toString().padStart(2, '0');\n\n// Format wind speed (e.g., 5 mph -> 005, pad to 3 digits)\nlet wind_str = wind_mph.toString().padStart(3, '0');\n\n// Format wind direction (e.g., 180 -> 180, pad to 3 digits)\nlet wind_dir_str = Math.round(wind_dir).toString().padStart(3, '0');\n\n// Calculate rain in hundredths of inches for last hour\nlet hourly_rain_inches = hourly_rain_mm / 25.4;\nlet hourly_rain_hundredths = Math.round(hourly_rain_inches * 100);\nlet rain_str = hourly_rain_hundredths.toString().padStart(3, '0');\n\n// APRS weather data for CBEACON infofile\n// Example: 180/005g005t071r012p...P...h80b.....\nlet aprs_weather = `3943.02N/07512.60W_${wind_dir_str}/${wind_str}g${wind_str}t${temp_str}r${rain_str}p...P...h${hum_str}b.....`;\n\nmsg.payload = aprs_weather;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 220,
+        "wires": [
+            [
+                "449192b557376f05",
+                "5fd71d74653408e4"
+            ]
+        ]
+    },
+    {
+        "id": "449192b557376f05",
+        "type": "file",
+        "z": "54dc019d10720398",
+        "name": "Write to weather.txt",
+        "filename": "weather.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": true,
+        "encoding": "utf8",
+        "x": 1050,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5fd71d74653408e4",
+        "type": "debug",
+        "z": "54dc019d10720398",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "1b066dc42eee8e45",
+        "type": "ui_gauge",
+        "z": "54dc019d10720398",
+        "name": "Temp",
+        "group": "586dbd5c872579f0",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temp",
+        "label": "units",
+        "format": "{{value}}",
+        "min": "-32",
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 580,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "7d4456f4674a0c45",
+        "type": "ui_gauge",
+        "z": "54dc019d10720398",
+        "name": "Humidity",
+        "group": "586dbd5c872579f0",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 580,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "6e2be083e38abc2f",
+        "type": "ui_gauge",
+        "z": "54dc019d10720398",
+        "name": "Wind Speed",
+        "group": "586dbd5c872579f0",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Wind Speed",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 650,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "cb36081efe74d7e8",
+        "type": "ui_text",
+        "z": "54dc019d10720398",
+        "group": "586dbd5c872579f0",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "Wind Direction",
+        "label": "Wind Direction",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 560,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "6592f4aba7b78648",
+        "type": "ui_gauge",
+        "z": "54dc019d10720398",
+        "name": "Rainfall",
+        "group": "586dbd5c872579f0",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Rainfall",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "5",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 740,
+        "y": 360,
+        "wires": []
+    }
+]
